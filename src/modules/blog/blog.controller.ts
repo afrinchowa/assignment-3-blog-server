@@ -3,7 +3,7 @@
 import { Request, Response } from 'express';
 
 import { BlogServices } from './blog.service';
-
+import { BlogQuery } from './blog.service';
 const createBlog = async (req: Request, res: Response) => {
   try {
     const payload = req.body;
@@ -24,7 +24,7 @@ const createBlog = async (req: Request, res: Response) => {
 };
 const getAllBlogs = async (req: Request, res: Response) => {
   try {
-    const query = req.query;
+    const query = req.query as BlogQuery; // Typecast the query parameters to BlogQuery
     const result = await BlogServices.getAllBlogsFromDB(query);
     res.status(200).json({
       success: true,
@@ -40,6 +40,7 @@ const getAllBlogs = async (req: Request, res: Response) => {
     });
   }
 };
+
 const getSingleBlog = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
