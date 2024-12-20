@@ -1,25 +1,18 @@
-import express, { Application, Request, Response } from 'express';
-import cors from 'cors';
-import { BicycleRoutes } from './modules/bicycle/bicycle.route';
-import { OrderRoutes } from './modules/order/order.routes';
+import express, { Request, Response } from 'express';
+import userRouter from './modules/user/user.route';
+import blogRouter from './modules/blog/blog.route';
+const app = express();
 
-
-const app: Application = express();
-
-// parser
+// middleware
 app.use(express.json());
-app.use(cors());
-// application
-app.use("/api/products", BicycleRoutes);
-app.use('/api/orders', OrderRoutes); 
-const getAController = (req: Request, res: Response) => {
-  const a = 10;
-  res.send(a);
-  res.status(200).json({
-    message:'Welcome to The Bicycle store'
-  })
-};
 
-app.get("/", getAController);
+app.use('/api/user', userRouter);
+app.use('/api/blogs', blogRouter);
 
+app.get('/', (req: Request, res: Response) => {
+  res.send({
+    status: true,
+    message: 'Server is live',
+  });
+});
 export default app;
