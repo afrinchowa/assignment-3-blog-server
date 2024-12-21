@@ -1,3 +1,14 @@
+<==========================================>
+Project name: EchoScribe
+Live URL: https://assignment-3-blog-server.vercel.app/
+Technology:
+•	TypeScript
+•	Node.js
+•	Express.js
+•	MongoDB with Mongoose
+
+<==========================================>
+
 This project is a backend application for a blogging platform that allows users to create, update, delete, and manage blogs. The platform includes robust authentication, role-based access control, and a public API for accessing blogs with advanced features like search, sort, and filter.
 
 Features
