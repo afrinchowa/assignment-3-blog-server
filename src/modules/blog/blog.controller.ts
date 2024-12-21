@@ -8,6 +8,16 @@ const createBlog = async (req: Request, res: Response) => {
   try {
     const payload = req.body;
     const result = await BlogServices.createBlogIntoDB(payload);
+    
+    if (!result) {
+      // Throw Not Found Error if blog is not found
+      throw {
+        type: 'NOT_FOUND_ERROR',
+        message: `Blog with id not found`,
+        statusCode: 404,
+      };
+    }
+    
     res.status(201).json({
       success: true,
       message: 'Blog created successfully',

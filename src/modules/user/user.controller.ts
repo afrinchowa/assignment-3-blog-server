@@ -3,7 +3,11 @@ import { loginValidation, registerValidation } from './user.validation';
 import { loginUser, registerUser } from './user.service';
 
 // Controller for user registration
-export const register: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+export const register: RequestHandler = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     // Validate the request body and throw an error directly if validation fails
     const { error } = registerValidation.validate(req.body);
@@ -24,9 +28,12 @@ export const register: RequestHandler = async (req: Request, res: Response, next
 };
 
 // Controller for user login
-export const login: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+export const login: RequestHandler = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
- 
     const { error } = loginValidation.validate(req.body);
 
     if (error) throw new Error('Validation error');
@@ -41,6 +48,6 @@ export const login: RequestHandler = async (req: Request, res: Response, next: N
       data: { token },
     });
   } catch (error) {
-    next(error); 
+    next(error);
   }
 };
